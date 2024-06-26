@@ -1,0 +1,20 @@
+From 0acf3d3fd4717f542610ba2c8d0e4633d60bbdc8 Mon Sep 17 00:00:00 2001
+From: Manisha Singh <masingh.linux@gmail.com>
+Date: Tue, 11 Jun 2024 21:47:51 +0530
+Subject: [PATCH] removing task_02 content
+
+---
+ task_02/linux | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 160000 task_02/linux
+
+diff --git a/task_02/linux b/task_02/linux
+deleted file mode 160000
+index 83a7eef..0000000
+--- a/task_02/linux
++++ /dev/null
+@@ -1 +0,0 @@
+-Subproject commit 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
+-- 
+2.34.1
+
