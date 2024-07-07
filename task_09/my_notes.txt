@@ -1,0 +1,25 @@
+static struct kobj_attribute attr_1_attribute = __ATTR(attr_1, 0664, attr_show, attr_store);
+static struct kobj_attribute attr_2_attribute = __ATTR_RO(attr_2);
+
+on passing this i am getting this error: 
+error: ‘attr_2_show’ undeclared here (not in a function); did you mean ‘attr_show’?
+   40 |     __ATTR_RO(attr_2);
+
+Reason:
+The __ATTR_RO macro is used to create a read-only sysfs attribute and it expects a function named attr_2_show for reading the attribute. In your current code, you only have the generic attr_show function, which is used for both attr_1 and attr_2.
+
+To fix the error, you can either define a specific show function for attr_2 or use the __ATTR macro with the same generic attr_show function, similar to how you defined attr_1_attribute.
+
+Option 1: Define a Specific Show Function for attr_2:
+static ssize_t attr_2_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+{
+    return attr_show(kobj, attr, buf); // Call the generic show function
+}
+
+static struct kobj_attribute attr_2_attribute = __ATTR_RO(attr_2);
+
+
+Option 2: Option 2: Use the Generic Show Function with __ATTR
+static struct kobj_attribute attr_2_attribute = __ATTR(attr_2, 0444, attr_show, NULL);
+
+
